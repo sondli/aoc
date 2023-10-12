@@ -73,15 +73,6 @@ func processLine(line string, ch chan bool, ch2 chan bool) {
 
 	ch2 <- slices.Contains(e1Range, e2StartInt) || slices.Contains(e1Range, e2EndInt) ||
 		slices.Contains(e2Range, e1StartInt) || slices.Contains(e2Range, e1EndInt)
-
-	/* if e1Range < e2Range {
-	       ch <- e1StartInt >= e2StartInt && e1EndInt <= e2EndInt
-	   } else if e1Range > e2Range {
-	       ch <- e2StartInt >= e1StartInt && e2EndInt <= e1EndInt
-	   } else {
-	       ch <- e1StartInt == e2StartInt && e1EndInt == e2EndInt
-	   }*/
-
 }
 
 func makeRange(min, max int) []int {
