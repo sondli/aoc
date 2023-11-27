@@ -61,11 +61,12 @@ func main() {
 	stacksTwo := getStartingStacks()
 
 	for _, inst := range instructions {
-		moving := stacksTwo[inst.from][len(stacksTwo[inst.from])-inst.move:]
-        println(moving)
-		for j := 0; j < len(moving) ; j++ {
-			stacksTwo[inst.to] = append(stacksTwo[inst.to], moving[j])
+		for i := inst.move; i > 0; i-- {
+			indexToMove := len(stacksTwo[inst.from]) - i
+			stacksTwo[inst.to] = append(stacksTwo[inst.to], stacksTwo[inst.from][indexToMove])
 		}
+        rangeToRemove := len(stacksTwo) - inst.move
+        stacksTwo[inst.from] = stacksTwo[inst.from][0:rangeToRemove -1]
 	}
 
 	messageTwo := ""
@@ -78,7 +79,7 @@ func main() {
 	}
 
 	fmt.Println("Answer two: " + messageTwo)
-	//fmt.Println(stacksTwo)
+	fmt.Println(stacksTwo)
 }
 
 func getStartingStacks() [][]string {
